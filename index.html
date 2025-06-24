@@ -37,8 +37,8 @@
   </style>
 </head>
 <body>
-  <video id="myVideo" width="80%" autoplay>
-    <source src="Video/00219 OT BRAINHEARING CAMPAIGN POST 1 V2 D.mp4" type="video/mp4">
+  <video id="myVideo" width="80%" controls autoplay>
+    <source src="Video\Oticorn QR Video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -46,6 +46,7 @@
 
   <script>
     const video = document.getElementById('myVideo');
+    volume = 1.0;
     const replayBtn = document.getElementById('replayBtn');
     const redirectUrl = "https://www.oticon.co.za/hearing-aid-users"; // Change to your site
     let timeoutId;

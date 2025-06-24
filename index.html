@@ -36,7 +36,7 @@
   </style>
 </head>
 <body>
-  <video id="myVideo" controls>
+  <video id="myVideo" controls playsinline>
     <source src="Video/Oticorn QR Video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -49,10 +49,11 @@
     const redirectUrl = "https://www.oticon.co.za/hearing-aid-users";
     let timeoutId;
 
-    // Set volume up
+
+    // Ensure video has volume set (after user interaction)
     video.volume = 1.0;
 
-    video.onended = function () {
+    video.addEventListener('ended', () => {
       replayBtn.style.display = "block";
       let countdown = 10;
 
@@ -67,14 +68,22 @@
           window.location.href = redirectUrl;
         }
       }, 1000);
-    };
+    });
 
-    replayBtn.onclick = function () {
+    replayBtn.addEventListener('click', () => {
       clearInterval(timeoutId);
       replayBtn.style.display = "none";
       video.currentTime = 0;
       video.play();
-    };
+    });
+
+    // Optional fallback: add a message if video doesn't autoplay
+    setTimeout(() => {
+      if (video.paused) {
+        alert("Tap to play the video");
+      }
+    }, 2000);
   </script>
+
 </body>
 </html>

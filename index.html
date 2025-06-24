@@ -13,12 +13,19 @@
       align-items: center;
       height: 100vh;
       position: relative;
+      font-family: sans-serif;
+    }
+
+    #myVideo {
+      width: 720px;
+      height: auto;
+      max-width: 100%;
     }
 
     #replayBtn {
       position: absolute;
-      bottom: 50px;
-      padding: 10px 20px;
+      bottom: 40px;
+      padding: 20px 20px;
       font-size: 18px;
       display: none;
       cursor: pointer;
@@ -26,19 +33,11 @@
       border: none;
       border-radius: 8px;
     }
-
-    #myVideo {
-    width: 720px;
-    height: auto;
-
-
-
-    }
   </style>
 </head>
 <body>
-  <video id="myVideo" width="80%" controls autoplay>
-    <source src="Video\Oticorn QR Video.mp4" type="video/mp4">
+  <video id="myVideo" controls>
+    <source src="Video/Oticorn QR Video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -46,12 +45,14 @@
 
   <script>
     const video = document.getElementById('myVideo');
-    volume = 1.0;
     const replayBtn = document.getElementById('replayBtn');
-    const redirectUrl = "https://www.oticon.co.za/hearing-aid-users"; // Change to your site
+    const redirectUrl = "https://www.oticon.co.za/hearing-aid-users";
     let timeoutId;
 
-    video.onended = function() {
+    // Set volume up
+    video.volume = 1.0;
+
+    video.onended = function () {
       replayBtn.style.display = "block";
       let countdown = 10;
 
@@ -68,7 +69,7 @@
       }, 1000);
     };
 
-    replayBtn.onclick = function() {
+    replayBtn.onclick = function () {
       clearInterval(timeoutId);
       replayBtn.style.display = "none";
       video.currentTime = 0;
